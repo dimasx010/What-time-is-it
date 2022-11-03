@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What time is it?</title>
+</head>
+
+<body>
+    <h2>Que Hora es en mi país?</h2>
+    <h3 id="current-time">19:15</h3>
+    <ul>
+        <li>Venezuela: <span id="ve"></span></li>
+        <li>Perú: <span id="pe"></span></li>
+        <li>Colombia: <span id="co"></span></li>
+        <li>Chile: <span id="ch"></span></li>
+        <li>Chile: <span id="ar"></span></li>
+        <li>Mexico: <span id="mx"></span></li>
+        
+    </ul>
+
+</body>
+
+</html>
+<script>
+    
+    const d = new Date();
+
+    correntTime = new Date().toLocaleString([], {timeStyle: 'short'})
+    document.getElementById("current-time").innerHTML = correntTime
+
+    const localTime = d.getTime();
+    const localOffset = d.getTimezoneOffset() * 60000;
+    
+    const utc = localTime + localOffset
+    const PeOffset = -5
+    const VeOffset = -4
+    const ArOffset = -3
+    const ChOffset = -5
+    const MxOffset = -6
+
+    const pe = utc + (3600000 * PeOffset)
+    const ve = utc + (3600000 * VeOffset)
+    const ch = utc + (3600000 * ChOffset)
+    const co = utc + (3600000 * PeOffset)
+    const ar = utc + (3600000 * ArOffset)
+    const mx = utc + (3600000 * MxOffset)
+
+    currentTimeVe = getCurrentTime(ve)
+    document.getElementById("ve").innerHTML = currentTimeVe
+
+    currentTimePe = getCurrentTime(pe)
+    document.getElementById("pe").innerHTML = currentTimePe
+
+    currentTimeCo = getCurrentTime(co)
+    document.getElementById("co").innerHTML = currentTimeCo
+
+    currentTimeCh = getCurrentTime(ch)
+    document.getElementById("ch").innerHTML = currentTimeCh
+    
+    currentTimeAr = getCurrentTime(ar)
+    document.getElementById("ar").innerHTML = currentTimeAr
+
+    currentTimeMx = getCurrentTime(ar)
+    document.getElementById("mx").innerHTML = currentTimeMx
+
+    function getCurrentTime(time) {
+        return new Date(time).toLocaleString([], {timeStyle: 'short'})
+    }
+</script>
